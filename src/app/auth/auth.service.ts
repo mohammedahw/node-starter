@@ -9,7 +9,7 @@ export const reshapeUser = (user: User) => {
   return rest;
 };
 
-export const login = async (data: validators.LoginSchema) => {
+export const login = async (data: validators.LoginDto) => {
   const user = await prisma.user.findUnique({
     where: {
       email: data.email,
@@ -38,7 +38,7 @@ export const login = async (data: validators.LoginSchema) => {
   };
 };
 
-export const register = async (data: validators.RegisterSchema) => {
+export const register = async (data: validators.RegisterDto) => {
   const user = await prisma.user.findUnique({
     where: {
       email: data.email,

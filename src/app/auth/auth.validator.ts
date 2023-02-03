@@ -14,5 +14,5 @@ export const registerSchema = z.object({
   image: z.string().url(),
 });
 
-export type LoginSchema = z.infer<typeof loginSchema>;
-export type RegisterSchema = z.infer<typeof registerSchema>;
+export type LoginDto = z.infer<typeof loginSchema>;
+export type RegisterDto = z.infer<typeof registerSchema>;
