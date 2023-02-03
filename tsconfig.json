@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "module": "CommonJS",
+    "strictNullChecks": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "outDir": "dist",
+    "target": "ES5"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
