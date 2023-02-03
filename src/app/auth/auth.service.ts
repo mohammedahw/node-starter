@@ -3,6 +3,7 @@ import * as jwt from "jsonwebtoken";
 import * as bcrypt from "bcrypt";
 import { prisma } from "../../prisma/prisma.service";
 import { User } from "@prisma/client";
+import { SECRET_KEY } from "../../utils/config";
 
 export const reshapeUser = (user: User) => {
   const { password, ...rest } = user;
@@ -26,7 +27,7 @@ export const login = async (data: validators.LoginDto) => {
     throw new Error("Incorrect password");
   }
 
-  const token = jwt.sign({ id: user.id }, process.env.SECRET!, {
+  const token = jwt.sign({ id: user.id }, SECRET_KEY, {
     expiresIn: "1d",
   });
 
@@ -54,7 +55,7 @@ export const register = async (data: validators.RegisterDto) => {
 
   const createdUser = await prisma.user.create({ data });
 
-  const token = jwt.sign({ id: createdUser.id }, process.env.SECRET!, {
+  const token = jwt.sign({ id: createdUser.id }, SECRET_KEY, {
     expiresIn: "1d",
   });
 
