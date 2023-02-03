@@ -3,7 +3,7 @@ import * as jwt from "jsonwebtoken";
 import * as bcrypt from "bcrypt";
 import { prisma } from "../../prisma/prisma.service";
 import { User } from "@prisma/client";
-import { SECRET_KEY } from "../../utils/config";
+import { SECRET_KEY } from "../../config/env";
 
 export const reshapeUser = (user: User) => {
   const { password, ...rest } = user;

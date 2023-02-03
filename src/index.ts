@@ -3,7 +3,7 @@ import express from "express";
 import { router } from "./routers";
 import * as dotenv from "dotenv";
 import morgan from "morgan";
-import { PORT } from "./utils/config";
+import { PORT } from "./config/env";
 import { errorHandler } from "./middlewares/errorHandler";
 
 const app = express();
