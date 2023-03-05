@@ -4,7 +4,7 @@ import { router } from "./routers";
 import * as dotenv from "dotenv";
 import morgan from "morgan";
 import { PORT } from "./config/env";
-import { errorHandler } from "./middlewares/errorHandler";
+import { errorHandler } from "./middlewares/error-handler";
 
 const app = express();
 dotenv.config();
