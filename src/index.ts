@@ -11,6 +11,7 @@ dotenv.config();
 
 // middlewares
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
 // router
@@ -21,5 +22,5 @@ app.use(errorHandler);
 
 // start server
 app.listen(PORT, () => {
-  console.log("Server started on port 3000");
+  console.log(`app is listening on port ${PORT}`);
 });
