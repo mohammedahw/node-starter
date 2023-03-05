@@ -11,24 +11,10 @@ export const errorHandler = (
 ) => {
   console.log(error);
 
-  if (error instanceof customErrors.BadRequestException) {
-    return res.status(error.status).json({ message: error.message });
-  }
-
-  if (error instanceof customErrors.UnauthorizedException) {
-    return res.status(error.status).json({ message: error.message });
-  }
-
-  if (error instanceof customErrors.ForbiddenException) {
-    return res.status(error.status).json({ message: error.message });
-  }
-
-  if (error instanceof customErrors.NotFoundException) {
-    return res.status(error.status).json({ message: error.message });
-  }
-
-  if (error instanceof customErrors.InternalServerErrorException) {
-    return res.status(error.status).json({ message: error.message });
+  for (const customError of Object.values(customErrors)) {
+    if (error instanceof customError) {
+      return res.status(error.status).json({ message: error.message });
+    }
   }
 
   if (error instanceof ZodError) {
