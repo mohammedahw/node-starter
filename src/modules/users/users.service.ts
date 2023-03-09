@@ -4,7 +4,7 @@ import { getPagination } from "../common/pagination";
 export async function list(query?: unknown) {
   const { skip, take } = getPagination(query);
 
-  return prisma.user.findMany({
+  const users = await prisma.user.findMany({
     skip,
     take,
     select: {
@@ -16,4 +16,11 @@ export async function list(query?: unknown) {
       username: true,
     },
   });
+
+  const count = await prisma.user.count();
+
+  return {
+    data: users,
+    count: count,
+  };
 }
