@@ -1,10 +1,8 @@
 import { Request, Response, Router } from "express";
 import * as authRouter from "./modules/auth/auth.router";
+import * as userRouter from "./modules/users/users.router";
 
 export const router = Router();
 
-router.get("/", (req: Request, res: Response) => {
-  res.send("Hello World!");
-});
-
 router.use(authRouter.PREFIX, authRouter.router);
+router.use(userRouter.PREFIX, userRouter.router);
