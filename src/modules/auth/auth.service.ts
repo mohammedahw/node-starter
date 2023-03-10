@@ -1,11 +1,11 @@
-import * as validators from "./auth.validator";
+import * as authSchemas from "./auth.schema";
 import * as jwt from "jsonwebtoken";
 import * as bcrypt from "bcrypt";
 import { prisma } from "../../prisma/prisma.service";
 import { SECRET_KEY } from "../../config/env";
 import * as userService from "../users/users.service";
 
-export const login = async (data: validators.LoginDto) => {
+export const login = async (data: authSchemas.LoginDto) => {
   const user = await prisma.user.findUnique({
     where: {
       email: data.email,
@@ -34,7 +34,7 @@ export const login = async (data: validators.LoginDto) => {
   };
 };
 
-export const register = async (data: validators.RegisterDto) => {
+export const register = async (data: authSchemas.RegisterDto) => {
   const user = await prisma.user.findUnique({
     where: {
       email: data.email,
