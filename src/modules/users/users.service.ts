@@ -1,3 +1,4 @@
+import { User } from "@prisma/client";
 import { prisma } from "../../prisma/prisma.service";
 import { getPagination } from "../common/pagination";
 
@@ -24,3 +25,8 @@ export async function list(query?: unknown) {
     count: count,
   };
 }
+
+export const reshapeUser = (user: User) => {
+  const { password, ...rest } = user;
+  return rest;
+};

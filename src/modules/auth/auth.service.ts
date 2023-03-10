@@ -2,13 +2,8 @@ import * as validators from "./auth.validator";
 import * as jwt from "jsonwebtoken";
 import * as bcrypt from "bcrypt";
 import { prisma } from "../../prisma/prisma.service";
-import { User } from "@prisma/client";
 import { SECRET_KEY } from "../../config/env";
-
-export const reshapeUser = (user: User) => {
-  const { password, ...rest } = user;
-  return rest;
-};
+import * as userService from "../users/users.service";
 
 export const login = async (data: validators.LoginDto) => {
   const user = await prisma.user.findUnique({
@@ -34,7 +29,7 @@ export const login = async (data: validators.LoginDto) => {
   const { password, ...rest } = user;
 
   return {
-    user: reshapeUser(user),
+    user: userService.reshapeUser(user),
     token,
   };
 };
@@ -60,7 +55,7 @@ export const register = async (data: validators.RegisterDto) => {
   });
 
   return {
-    user: reshapeUser(createdUser),
+    user: userService.reshapeUser(createdUser),
     token,
   };
 };
